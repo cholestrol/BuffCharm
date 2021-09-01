@@ -1,0 +1,3 @@
+displayName = Buff Charm
+author = Choles
+version = 0.1
