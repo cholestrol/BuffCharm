@@ -10,22 +10,30 @@ namespace BuffCharm
     class BuffCharmPlayer : ModPlayer
     {
         private static List<CustomItemSlot> GetCharmSlots => BuffCharm.ModInstance.CharmUIInstance.CharmSlots;
+        private List<Item> Charms;
 
         public override TagCompound Save()
         {
-            TagCompound tagCompound = new TagCompound();
-            for (int i = 0; i < GetCharmSlots.Count; i++)
+            Charms = new List<Item>();
+            foreach (CustomItemSlot slot in GetCharmSlots)
             {
-                tagCompound.Add(new KeyValuePair<string, object>("charm" + i, ItemIO.Save(GetCharmSlots[i].Item)));
+                Charms.Add(slot.Item);
             }
-            return tagCompound;
+            return new TagCompound
+            {
+                {"charms", Charms}
+            };
+        }
+        public override void Load(TagCompound tag)
+        {
+            Charms = tag.Get<List<Item>>("charms");
         }
 
-        public override void Load(TagCompound tag)
+        public override void OnEnterWorld(Player player)
         {
             for (int i = 0; i < GetCharmSlots.Count; i++)
             {
-                GetCharmSlots[i].Item = ItemIO.Load(tag.GetCompound("charm" + i));
+                GetCharmSlots[i].Item = Charms[i];
             }
         }
 
