@@ -8,14 +8,15 @@ namespace BuffCharm.UI
     public class CharmUI : UIState
     {
         public static readonly int SlotCount = 5;
-
-        public static readonly int TopPositionStart = 20;
-        public static readonly int TopPositionOffset = 48;
-        public static readonly int LeftPosition = 572;
+        public static readonly int LeftPositionStart = 20;
+        public static readonly int LeftPositionOffset = 48;
+        public static readonly int TopPosition = 258;
         public static readonly float SlotScale = 0.85f;
 
         public List<CustomItemSlot> CharmSlots = new List<CustomItemSlot>();
-        public bool Visible => Main.playerInventory && Main.clientPlayer.chest == -1;
+        public bool Visible => Main.playerInventory
+                            && Main.player[0].chest == -1
+                            && Main.npcShop == 0;
         public override void OnInitialize()
         {
             CroppedTexture2D emptyTexture = new CroppedTexture2D(
@@ -32,8 +33,8 @@ namespace BuffCharm.UI
                     BackgroundTexture = backgroundTexture,
                     HoverText = "Charm",
                 };
-                slotRef.Left.Set(LeftPosition, 0);
-                slotRef.Top.Set(TopPositionStart + (TopPositionOffset * i), 0);
+                slotRef.Left.Set(LeftPositionStart + (LeftPositionOffset * i), 0);
+                slotRef.Top.Set(TopPosition, 0);
                 Append(slotRef);
                 CharmSlots.Add(slotRef);
             }

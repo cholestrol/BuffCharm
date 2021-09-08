@@ -9,6 +9,8 @@ namespace BuffCharm
 {
     class BuffCharmPlayer : ModPlayer
     {
+        private const int NumCoinSlots = 4;
+
         private static List<CustomItemSlot> GetCharmSlots => BuffCharm.ModInstance.CharmUIInstance.CharmSlots;
         private List<Item> Charms;
 
@@ -58,7 +60,7 @@ namespace BuffCharm
             }
             if (inCharmSlots)
             {
-                for (int i = player.inventory.Length - GetCharmSlots.Count - 1; i >= 0; i--)
+                for (int i = player.inventory.Length - GetCharmSlots.Count - NumCoinSlots - 1; i >= 0; i--)
                 {
                     if (player.inventory[i].IsAir)
                     {
