@@ -11,3 +11,17 @@ Craft a charm with a stack of 10 buff potions and 6 gold or platinum bars at an 
 Certain charms can even be combined with each other at an anvil!
 
 Huge shoutout to abluescarab for their custom item slot wrapper! This mod would have taken me much, much longer without it!
+
+Changelog:
+
+0.1.0:
+- Released to tModloader
+
+0.1.1:
+- Uploaded code to GitHub
+- Added mod icon
+
+0.1.2:
+- The Rage buff now allows minions to crit at a fixed 10% chance
+- Added Featherfall Charm, Gravitation Charm, and Charm of the Cosmos
+- The Wizard will now sell holy, unholy, and blood water, no matter what evil your world has

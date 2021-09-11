@@ -35,7 +35,7 @@ namespace BuffCharm
             {
                 layers.Insert(
                     inventoryLayer,
-                    new LegacyGameInterfaceLayer("My Mod: My Slot UI", () => {
+                    new LegacyGameInterfaceLayer("BuffCharm: Charms", () => {
                         if (CharmUIInstance.Visible)
                         {
                             userInterface.Draw(Main.spriteBatch, new GameTime());
