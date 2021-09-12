@@ -11,6 +11,7 @@ namespace BuffCharm
     {
         private const int NumCoinSlots = 4;
 
+        public List<int> BuffsFromCharms = new List<int>();
         private static List<CustomItemSlot> GetCharmSlots => BuffCharm.ModInstance.CharmUIInstance.CharmSlots;
         private List<Item> Charms;
 
@@ -26,6 +27,7 @@ namespace BuffCharm
                 {"charms", Charms}
             };
         }
+
         public override void Load(TagCompound tag)
         {
             Charms = tag.Get<List<Item>>("charms");
@@ -41,10 +43,17 @@ namespace BuffCharm
 
         public override void UpdateEquips(ref bool wallSpeedBuff, ref bool tileSpeedBuff, ref bool tileRangeBuff)
         {
+            foreach (int buff in BuffsFromCharms)
+            {
+                player.ClearBuff(buff);
+                Main.buffNoTimeDisplay[buff] = false;
+            }
+            BuffsFromCharms.Clear();
             for (int i = 0; i < GetCharmSlots.Count; i++)
             {
                 player.VanillaUpdateEquip(GetCharmSlots[i].Item);
             }
+            
         }
 
         public override bool ShiftClickSlot(Item[] inventory, int context, int slot)

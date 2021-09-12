@@ -31,7 +31,9 @@ namespace BuffCharm.Items
         {
             foreach (int buff in Buffs)
             {
-                player.AddBuff(buff, 1, true);
+                Main.buffNoTimeDisplay[buff] = true;
+                player.AddBuff(buff, 18000);
+                player.GetModPlayer<BuffCharmPlayer>().BuffsFromCharms.Add(buff);
             }
         }
 
