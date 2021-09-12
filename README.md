@@ -31,3 +31,7 @@ Huge shoutout to abluescarab for their custom item slot wrapper! This mod would 
 0.1.2.1
 
 - Fixed bug causing some people's buffs to constantly enable/disable themselves
+
+0.1.2.2
+
+- Fixed multiplayer bug causing charm slots to hide themselves when the host opens a chest
