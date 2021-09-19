@@ -25,9 +25,14 @@ Changelog:
 - The Rage buff now allows minions to crit at a fixed 10% chance
 - Added Featherfall Charm, Gravitation Charm, and Charm of the Cosmos
 - The Wizard will now sell holy, unholy, and blood water, no matter what evil your world has
+- Official thread created
 
 0.1.2.1:
 - Fixed bug causing some people's buffs to constantly enable/disable themselves
 
 0.1.2.2:
 - Fixed multiplayer bug causing charm slots to hide themselves when the host opens a chest
+
+0.1.2.3:
+- Fixed charm slots not being hidden when chests are opened in singleplayer
+- Fixed multiplayer bug making buffs from charms last for 5 more minutes when unequipped by everyone but the host

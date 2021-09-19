@@ -8,6 +8,7 @@ namespace BuffCharm.Items
 {
     public abstract class _BaseBuffCharm : ModItem
     {
+        public static readonly int BuffTime = 120;
         public static readonly int OneGold = 50000;
         public abstract string Description { get; }
         public abstract int Gold { get; }
@@ -32,7 +33,7 @@ namespace BuffCharm.Items
             foreach (int buff in Buffs)
             {
                 Main.buffNoTimeDisplay[buff] = true;
-                player.AddBuff(buff, 18000);
+                player.AddBuff(buff, BuffTime);
                 player.GetModPlayer<BuffCharmPlayer>().BuffsFromCharms.Add(buff);
             }
         }

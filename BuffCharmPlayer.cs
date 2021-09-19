@@ -1,18 +1,22 @@
 ﻿using BuffCharm.UI;
+using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
+using Terraria.UI.Chat;
 
 namespace BuffCharm
 {
     class BuffCharmPlayer : ModPlayer
     {
+        public override bool CloneNewInstances => true;
+
         private const int NumCoinSlots = 4;
 
         public List<int> BuffsFromCharms = new List<int>();
-        private static List<CustomItemSlot> GetCharmSlots => BuffCharm.ModInstance.CharmUIInstance.CharmSlots;
+        private List<CustomItemSlot> GetCharmSlots => BuffCharm.ModInstance.CharmUIInstance.CharmSlots;
         private List<Item> Charms;
 
         public override TagCompound Save()
@@ -48,12 +52,11 @@ namespace BuffCharm
                 player.ClearBuff(buff);
                 Main.buffNoTimeDisplay[buff] = false;
             }
-            BuffsFromCharms.Clear();
+            BuffsFromCharms = new List<int>();
             for (int i = 0; i < GetCharmSlots.Count; i++)
             {
                 player.VanillaUpdateEquip(GetCharmSlots[i].Item);
             }
-            
         }
 
         public override bool ShiftClickSlot(Item[] inventory, int context, int slot)
