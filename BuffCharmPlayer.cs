@@ -28,13 +28,15 @@ namespace BuffCharm
             }
             return new TagCompound
             {
-                {"charms", Charms}
+                {"charms", Charms},
+                {"disabledbuffs", DisabledBuffs}
             };
         }
 
         public override void Load(TagCompound tag)
         {
             Charms = tag.Get<List<Item>>("charms");
+            DisabledBuffs = tag.Get<List<int>>("disabledbuffs");
         }
 
         public override void OnEnterWorld(Player player)
@@ -53,33 +55,36 @@ namespace BuffCharm
         {
             if (!Main.dedServ)
             {
-                /*if (DisabledBuffs.Count > 0 && !player.HasBuff(ModContent.BuffType<DisabledBuffs>()))
+                if (DisabledBuffs.Count > 0 && !player.HasBuff(ModContent.BuffType<DisabledBuffs>()))
                 {
                     DisabledBuffs = new List<int>();
                 } else
-                {*/
+                {
                     foreach (int buff in BuffsFromCharms)
                     {
-                        player.ClearBuff(buff);
-                        /*else if (!DisabledBuffs.Contains(buff))
+                        if (player.HasBuff(buff))
+                        {
+                            player.ClearBuff(buff);
+                        }
+                        else if (!DisabledBuffs.Contains(buff))
                         {
                             DisabledBuffs.Add(buff);
-                        }*/
+                        }
                         Main.buffNoTimeDisplay[buff] = false;
                     }
-                //}
+                }
                 player.GetModPlayer<BuffCharmPlayer>().BuffsFromCharms = new List<int>();
                 for (int i = 0; i < BuffCharm.ModInstance.CharmUIInstance.CharmSlots.Count; i++)
                 {
                     player.VanillaUpdateEquip(BuffCharm.ModInstance.CharmUIInstance.CharmSlots[i].Item);
                 }
-                /*if (DisabledBuffs.Count > 0)
+                if (DisabledBuffs.Count > 0)
                 {
                     player.AddBuff(ModContent.BuffType<DisabledBuffs>(), 120);
                 } else
                 {
                     player.ClearBuff(ModContent.BuffType<DisabledBuffs>());
-                }*/
+                }
             }
         }
 

@@ -34,11 +34,14 @@ namespace BuffCharm.Items
             foreach (int buff in Buffs)
             {
                 Main.buffNoTimeDisplay[buff] = true;
-                //if (!player.GetModPlayer<BuffCharmPlayer>().DisabledBuffs.Contains(buff))
+                if (!player.GetModPlayer<BuffCharmPlayer>().DisabledBuffs.Contains(buff))
                 {
                     player.AddBuff(buff, BuffTime);
                 }
-                player.GetModPlayer<BuffCharmPlayer>().BuffsFromCharms.Add(buff);
+                if (!player.GetModPlayer<BuffCharmPlayer>().BuffsFromCharms.Contains(buff))
+                {
+                    player.GetModPlayer<BuffCharmPlayer>().BuffsFromCharms.Add(buff);
+                }
             }
         }
 

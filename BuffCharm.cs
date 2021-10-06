@@ -11,7 +11,7 @@ namespace BuffCharm
 	{
         public static BuffCharm ModInstance;
         public static List<int> Charms = new List<int>();
-        public override uint ExtraPlayerBuffSlots => 500;
+        public override uint ExtraPlayerBuffSlots => 55;
 
         public CharmUI CharmUIInstance;
 
