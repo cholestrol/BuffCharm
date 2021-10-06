@@ -16,7 +16,8 @@ namespace BuffCharm.UI
         public List<CustomItemSlot> CharmSlots = new List<CustomItemSlot>();
         public bool Visible => Main.playerInventory
                             && ((Main.ActivePlayersCount == 1 && Main.player[0].chest == -1) || (Main.ActivePlayersCount > 1 && Main.clientPlayer.chest == -1))
-                            && Main.npcShop == 0;
+                            && Main.npcShop == 0
+                            && !Main.InReforgeMenu;
         public override void OnInitialize()
         {
             CroppedTexture2D emptyTexture = new CroppedTexture2D(

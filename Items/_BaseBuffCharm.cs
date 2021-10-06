@@ -3,6 +3,7 @@ using Terraria;
 using Terraria.ModLoader;
 using System.Collections.Generic;
 using BuffCharm.UI;
+using BuffCharm.Buffs;
 
 namespace BuffCharm.Items
 {
@@ -33,7 +34,10 @@ namespace BuffCharm.Items
             foreach (int buff in Buffs)
             {
                 Main.buffNoTimeDisplay[buff] = true;
-                player.AddBuff(buff, BuffTime);
+                //if (!player.GetModPlayer<BuffCharmPlayer>().DisabledBuffs.Contains(buff))
+                {
+                    player.AddBuff(buff, BuffTime);
+                }
                 player.GetModPlayer<BuffCharmPlayer>().BuffsFromCharms.Add(buff);
             }
         }
