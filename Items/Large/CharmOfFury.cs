@@ -1,6 +1,6 @@
 ﻿namespace BuffCharm.Items.Large
 {
-    class CharmOfFury : DeprecatedCharm
+    class CharmOfFury : RemovedCharm
     {
     }
 }

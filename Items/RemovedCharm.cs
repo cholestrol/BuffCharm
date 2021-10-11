@@ -3,13 +3,13 @@ using Terraria.ModLoader;
 
 namespace BuffCharm.Items
 {
-    abstract class DeprecatedCharm : ModItem 
+    abstract class RemovedCharm : ModItem 
     { 
-        public override string Texture => "BuffCharm/Items/DeprecatedCharm";
+        public override string Texture => "BuffCharm/Items/RemovedCharm";
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Deprecated Charm");
-            Tooltip.SetDefault("This charm has been deprecated\nPlace this in your inventory to recieve a Charm Ticket");
+            DisplayName.SetDefault("Removed Charm");
+            Tooltip.SetDefault("This charm has been removed\nPlace this in your inventory to recieve a Charm Ticket");
         }
         public override void SetDefaults()
         {

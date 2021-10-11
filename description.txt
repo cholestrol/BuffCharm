@@ -40,7 +40,7 @@ Changelog:
 1.0.0.0:
 - Many changes to charms were made to prevent the player from having to craft multiple of the same charms to craft
 their combined versions.
-- Charm of Chaos, Charm of Fury, and Charm of Tranquility were deprecated. Anyone with these charms after this 
+- Charm of Chaos, Charm of Fury, and Charm of Tranquility were removed. Anyone with these charms after this 
 update will recieve a Charm Ticket that can be crafted into another charm.
 - Added Charm of Crimson and Charm of Corruption!
 - Buffs can now be disabled by right clicking the buff icon! This will give you a "Disabled Buffs" buff that
