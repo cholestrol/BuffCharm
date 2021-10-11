@@ -11,13 +11,12 @@ namespace BuffCharm
 {
     class BuffCharmPlayer : ModPlayer
     {
-
         private const int NumCoinSlots = 4;
-
         public List<int> BuffsFromCharms = new List<int>();
         private List<Item> Charms = new List<Item>();
-
         public List<int> DisabledBuffs = new List<int>();
+        public bool justSpawned = false;
+        public List<Item> CachedDeleteItems = new List<Item>();
 
         public override TagCompound Save()
         {
@@ -50,27 +49,36 @@ namespace BuffCharm
                 }
             }
         }
-        
+
+        public override void OnRespawn(Player player)
+        {
+            justSpawned = true;
+        }
+
         public override void UpdateEquips(ref bool wallSpeedBuff, ref bool tileSpeedBuff, ref bool tileRangeBuff)
         {
             if (!Main.dedServ)
             {
-                if (DisabledBuffs.Count > 0 && !player.HasBuff(ModContent.BuffType<DisabledBuffs>()))
+                if (!justSpawned)
                 {
-                    DisabledBuffs = new List<int>();
-                } else
-                {
-                    foreach (int buff in BuffsFromCharms)
+                    if (DisabledBuffs.Count > 0 && !player.HasBuff(ModContent.BuffType<DisabledBuffs>()))
                     {
-                        if (player.HasBuff(buff))
+                        DisabledBuffs = new List<int>();
+                    }
+                    else
+                    {
+                        foreach (int buff in BuffsFromCharms)
                         {
-                            player.ClearBuff(buff);
+                            if (player.HasBuff(buff))
+                            {
+                                player.ClearBuff(buff);
+                            }
+                            else if (!DisabledBuffs.Contains(buff))
+                            {
+                                DisabledBuffs.Add(buff);
+                            }
+                            Main.buffNoTimeDisplay[buff] = false;
                         }
-                        else if (!DisabledBuffs.Contains(buff))
-                        {
-                            DisabledBuffs.Add(buff);
-                        }
-                        Main.buffNoTimeDisplay[buff] = false;
                     }
                 }
                 player.GetModPlayer<BuffCharmPlayer>().BuffsFromCharms = new List<int>();
@@ -81,10 +89,12 @@ namespace BuffCharm
                 if (DisabledBuffs.Count > 0)
                 {
                     player.AddBuff(ModContent.BuffType<DisabledBuffs>(), 120);
-                } else
+                }
+                else
                 {
                     player.ClearBuff(ModContent.BuffType<DisabledBuffs>());
                 }
+                justSpawned = false;
             }
         }
 
@@ -117,6 +127,21 @@ namespace BuffCharm
                 }
             }
             return false;
+        }
+
+        public override void PostUpdate()
+        {
+            if (CachedDeleteItems.Count > 0)
+            {
+                foreach (Item item in player.inventory)
+                {
+                    if (CachedDeleteItems.Contains(item))
+                    {
+                        item.TurnToAir();
+                    }
+                }
+                CachedDeleteItems = new List<Item>();
+            }
         }
     }
 }

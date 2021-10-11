@@ -9,6 +9,7 @@ namespace BuffCharm.Items.Small
         public abstract int[,] PotionsCraftedFrom { get; }
         public override int Gold => 1;
         public override int Rarity => ItemRarityID.Green;
+        public override bool CanBeCraftedFromTicket => true;
         public override void AddRecipes()
         {
             for (int i = 0; i < 2; i++)
@@ -35,6 +36,13 @@ namespace BuffCharm.Items.Small
                     recipe.SetResult(this);
                     recipe.AddRecipe();
                 }
+            }
+            if (CanBeCraftedFromTicket)
+            {
+                ModRecipe recipe = new ModRecipe(mod);
+                recipe.AddIngredient(ModContent.ItemType<CharmTicket>(), 1);
+                recipe.SetResult(this);
+                recipe.AddRecipe();
             }
         }
     }

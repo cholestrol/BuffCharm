@@ -6,17 +6,16 @@ namespace BuffCharm.Items.Large
 {
     class CharmOfTheTurtle : _BaseLargeCharm
     {
-        public override string Description => "Grants Endurance, Ironskin, and Thorns buffs while equipped";
+        public override string Description => "Grants Endurance and Ironskin buffs while equipped";
         public override int[] Buffs => new int[]
         {
-            BuffID.Endurance, BuffID.Ironskin, BuffID.Thorns
+            BuffID.Endurance, BuffID.Ironskin
         };
         public override int[,] CharmsCraftedFrom => new int[,]
         {
             {
                 ModContent.ItemType<EnduranceCharm>(),
-                ModContent.ItemType<IronskinCharm>(),
-                ModContent.ItemType<ThornsCharm>()
+                ModContent.ItemType<IronskinCharm>()
             }
         };
     }

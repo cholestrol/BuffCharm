@@ -16,6 +16,8 @@ namespace BuffCharm.Items
         public abstract int Rarity { get; }
         public abstract int[] Buffs { get; }
 
+        public abstract bool CanBeCraftedFromTicket { get; }
+
         public override void SetStaticDefaults()
         {
             Tooltip.SetDefault(Description);
